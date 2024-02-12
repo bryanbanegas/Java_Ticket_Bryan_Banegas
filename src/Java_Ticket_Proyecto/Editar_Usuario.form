@@ -30,7 +30,7 @@
                       <Component id="Crear_usuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
                       <Component id="cancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="164" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -58,7 +58,7 @@
                                   <Component id="NombreTextbox" alignment="0" max="32767" attributes="0"/>
                                   <Component id="UsuarioTextbox" alignment="0" pref="345" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="69" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -89,7 +89,7 @@
                   <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="EdadTextbox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Crear_usuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -101,6 +101,10 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="UsuarioTextbox">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="UsuarioTextbox.setText(users.get(pos).getUser());"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="cancelar">
       <Properties>
@@ -111,6 +115,10 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NombreTextbox">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="NombreTextbox.setText(users.get(pos).getName());"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -118,15 +126,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="EdadTextbox">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String e=String.valueOf(users.get(pos).getEdad());&#xa;EdadTextbox.setText(e);"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edad"/>
+        <Property name="text" type="java.lang.String" value="Edad:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Crear_usuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+        <Property name="text" type="java.lang.String" value="Editar Usuario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Crear_usuarioActionPerformed"/>
@@ -143,6 +155,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="PasswordTextbox">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="PasswordTextbox.setText(users.get(pos).getPassword());"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

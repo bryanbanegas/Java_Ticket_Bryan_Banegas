@@ -4,12 +4,14 @@
  */
 package Java_Ticket_Proyecto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author adalb
  */
-public class Usuarios {
-    public Usuarios[] users=new Usuarios[100];
+public final class Usuarios {
+    public static Usuarios u=new Usuarios("","","",0,0);
     private String user;
     private String name;
     private String password;

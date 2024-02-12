@@ -20,11 +20,14 @@ public class Crear_Usuario extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        //recordar borrar esto
+        users.add(new Usuarios("Bryan Banegas","admin","supersecreto",18,1));
     }
     public static Usuarios llamar=new Usuarios("","","",0,0);
+    public static ArrayList<Usuarios> users=new ArrayList<>();
     public static int cantidadeusuarios=1;
     public static int edadCrear=0;
-    public static boolean puedeAvanzar=false;
+    public static boolean puedeAvanzar=false,puedeAvanzar1=false;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,6 +141,9 @@ public class Crear_Usuario extends javax.swing.JFrame {
         String nombreCrear=NombreTextbox.getText();
         String contraseñaCrear=PasswordTextbox.getText();
         String edad=EdadTextbox.getText();
+        if(usuarioCrear.isEmpty()||nombreCrear.isEmpty()||contraseñaCrear.isEmpty()||edad.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos.");
+        }else{
         try{
             edadCrear=Integer.parseInt(edad);
             puedeAvanzar=true;
@@ -145,48 +151,55 @@ public class Crear_Usuario extends javax.swing.JFrame {
             puedeAvanzar=false;
         }
         if(puedeAvanzar==true){
-            if (usuarioCrear.isEmpty()||contraseñaCrear.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos.");
-            }else{
-                if(usuarioCrear.equals("admin")){
-                    JOptionPane.showMessageDialog(null, "Usuario Existente");
-                }else{
-                    //Recordar hacer una clase que busque si el usuario ya existe
-                    for(int contar=0;contar<llamar.users.length;contar++){
-                        if(llamar.users[contar].getUser().equals(usuarioCrear)){
-                            JOptionPane.showMessageDialog(null, "Usuario Existente");
-                        }else if(llamar.users[contar].getUser()==null){
-                            Object[] opciones={"Administrativo", "Contenido"};
-                            int error=0;
-                            while(error==0){
-                            int seleccion=JOptionPane.showOptionDialog(null,
-                                    "Elige el tipo de usuario:",
-                                    "Elegir Opción",
-                                    JOptionPane.DEFAULT_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    null,
-                                    opciones,                    
-                                    opciones[1]); 
-                            if(opciones[seleccion].equals("Administrativo")){
-                                error=1;
-                            }else if(opciones[seleccion].equals("Contenido")){
-                                error=2;
-                            }
-                            }
-                            JOptionPane.showMessageDialog(null, "Ha creado exitosamente su cuenta.");
-                            llamar.users[contar].setName(nombreCrear);
-                            llamar.users[contar].setUser(usuarioCrear);
-                            llamar.users[contar].setPassword(contraseñaCrear);
-                            llamar.users[contar].setEdad(edadCrear);
-                            llamar.users[contar].setTipo(error);
-                            cantidadeusuarios++;
-                        }
-                    }  
-                }    
+            //Recordar hacer una clase que busque si el usuario ya existe
+            for(int indice=0;indice<users.size();indice++){
+                if(users.get(indice)!=null){
+                    if(users.get(indice).getUser().equals(usuarioCrear)){
+                        puedeAvanzar1=false;
+                        JOptionPane.showMessageDialog(null, "Usuario ya existe.");
+                        break;
+                    }else{
+                        puedeAvanzar1=true;
+                    }
+                }
+            }
+            if(puedeAvanzar1==true){                    
+            int error=0;
+            while(error==0){
+            try{
+                Object[] opciones={"Administrativo", "Contenido", "Limitado"};
+                int seleccion=JOptionPane.showOptionDialog(null,
+                        "Elige el tipo de usuario:",
+                        "Elegir Opción",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        opciones,                    
+                        opciones[1]); 
+                if(opciones[seleccion].equals("Administrativo")){
+                    error=1;
+                }else if(opciones[seleccion].equals("Contenido")){
+                    error=2;
+                }else if(opciones[seleccion].equals("Limitado")){
+                    error=3;
+                }
+            }catch(ArrayIndexOutOfBoundsException e){
+                error=0;
+            }
+            }
+            users.add(new Usuarios(nombreCrear,usuarioCrear,contraseñaCrear,edadCrear,error));
+            JOptionPane.showMessageDialog(null, "Ha creado exitosamente su cuenta.");
+            cantidadeusuarios++;
+            puedeAvanzar=false;
+            puedeAvanzar1=false;
+            Administracion_de_usuarios pasar=new Administracion_de_usuarios();
+            pasar.setVisible(true);
+            this.setVisible(false);
             }
         }else{
             JOptionPane.showMessageDialog(null,"Ingrese su edad en numeros enteros");
         }
+    }
     }//GEN-LAST:event_Crear_usuarioActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed

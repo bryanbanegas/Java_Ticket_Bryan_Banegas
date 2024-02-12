@@ -4,19 +4,27 @@
  */
 package Java_Ticket_Proyecto;
 
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author adalb
  */
-public class panel_control extends javax.swing.JFrame {
+public class prueba extends javax.swing.JFrame {
 
     /**
-     * Creates new form panel_control
+     * Creates new form prueba
      */
-    public panel_control() {
+    public prueba() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
-
+    private Date fechaDeEvento=new Date();
+    private Date fechaDeHoy=new Date(124,1,10);
+    private Date diaAntes = new Date();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,22 +34,15 @@ public class panel_control extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LoginButton = new javax.swing.JButton();
-        CrearUsurarioButton = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LoginButton.setText("Login");
-        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginButtonActionPerformed(evt);
-            }
-        });
-
-        CrearUsurarioButton.setText("Crear Usuario");
-        CrearUsurarioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearUsurarioButtonActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -49,39 +50,36 @@ public class panel_control extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CrearUsurarioButton)
-                    .addComponent(LoginButton))
-                .addContainerGap(148, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(LoginButton)
-                .addGap(64, 64, 64)
-                .addComponent(CrearUsurarioButton)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(121, 121, 121)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jButton1)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Login pasar=new Login();
-        pasar.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_LoginButtonActionPerformed
-
-    private void CrearUsurarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsurarioButtonActionPerformed
-        // TODO add your handling code here:
-        Crear_Usuario pasar=new Crear_Usuario();
-        pasar.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_CrearUsurarioButtonActionPerformed
+        fechaDeEvento=jDateChooser1.getDate();
+        diaAntes=new Date(fechaDeEvento.getTime() - 24 * 60 * 60 * 1000);
+        if(fechaDeHoy.equals(diaAntes)){
+            JOptionPane.showMessageDialog(null, "Las fechas son correctas");
+        }else{
+            JOptionPane.showMessageDialog(null, "Las fechas no son iguales");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,26 +98,26 @@ public class panel_control extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(panel_control.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(panel_control.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(panel_control.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(panel_control.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panel_control().setVisible(true);
+                new prueba().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CrearUsurarioButton;
-    private javax.swing.JButton LoginButton;
+    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     // End of variables declaration//GEN-END:variables
 }

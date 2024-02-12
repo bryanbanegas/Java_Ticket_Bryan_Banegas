@@ -4,33 +4,22 @@
  */
 package Java_Ticket_Proyecto;
 
-import static Java_Ticket_Proyecto.Crear_Evento.eventos;
-import static Java_Ticket_Proyecto.Crear_Evento.fechaCrear;
-import static Java_Ticket_Proyecto.Crear_Evento.user;
-import static Java_Ticket_Proyecto.Crear_Usuario.edadCrear;
 import static Java_Ticket_Proyecto.Crear_Usuario.users;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author adalb
  */
-public class Login extends javax.swing.JFrame {
-    
-    private String contra;
-    private String usuario;
+public class confirmar_usuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form confirmar_usuario
      */
-    public Login() {
+    public confirmar_usuario() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        users.add(new Usuarios("Bryan Banegas","admin","supersecreto",18,1));
-        eventos.add(new Evento_Deportivo("","cancelado","","",
-                                fechaCrear,0,0,"","",""));
-        user.add("");
     }
     public static String usuarioLogin="";
     public static String contraseñaLogin="";
@@ -48,14 +37,15 @@ public class Login extends javax.swing.JFrame {
         PasswordTextbox = new javax.swing.JPasswordField();
         backgroundLabel = new javax.swing.JLabel();
         Ingresar = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(UsuarioTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 283, -1));
-        getContentPane().add(PasswordTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 283, -1));
+        getContentPane().add(UsuarioTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 283, -1));
+        getContentPane().add(PasswordTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 283, -1));
 
-        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Login_background.png"))); // NOI18N
-        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 582, 328));
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/confirmar_usuario.png"))); // NOI18N
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 566, 272));
 
         Ingresar.setText("Ingresar");
         Ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +53,15 @@ public class Login extends javax.swing.JFrame {
                 IngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 120, 50));
+        getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 130, 60));
+
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 150, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -76,32 +74,41 @@ public class Login extends javax.swing.JFrame {
         if(usuarioLogin.isEmpty()||contraseñaLogin.isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos.");
         }else{
-            for(int indice=0;indice<users.size();indice++){
-                if(users.get(indice)!=null){
-                    if(users.get(indice).getUser().equals(usuarioLogin)){
-                        if(users.get(indice).getPassword().equals(contraseñaLogin)){
-                            pos=indice;
-                            noExiste=false;
-                            Sistema pasar=new Sistema();
-                            pasar.setVisible(true);
-                            this.setVisible(false);
-                            break;
-                        }else{
+        for(int indice=0;indice<users.size();indice++){
+            if(users.get(indice)!=null){
+                if(users.get(indice).getUser().equals(usuarioLogin)){
+                    if(users.get(indice).getPassword().equals(contraseñaLogin)){
+                        if(users.get(indice).getTipo()==0){
                             noExiste=true;
+                        }else{
+                        pos=indice;
+                        noExiste=false;
+                        Editar_Usuario pasar=new Editar_Usuario();
+                        pasar.setVisible(true);
+                        this.setVisible(false);
+                        break;
                         }
                     }else{
                         noExiste=true;
                     }
+                }else{
+                    noExiste=true;
                 }
             }
-            if(noExiste==true){
-                JOptionPane.showMessageDialog(null, "Usuario no existe.");
-            }
         }
+        if(noExiste==true){
+            JOptionPane.showMessageDialog(null, "Usuario no existe.");
+        }
+    }  
     }//GEN-LAST:event_IngresarActionPerformed
-    /*
-    
-    */
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        Administracion_de_usuarios pasar=new Administracion_de_usuarios();
+        pasar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -119,25 +126,26 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new confirmar_usuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
     private javax.swing.JButton Ingresar;
     private javax.swing.JPasswordField PasswordTextbox;
     private javax.swing.JTextField UsuarioTextbox;

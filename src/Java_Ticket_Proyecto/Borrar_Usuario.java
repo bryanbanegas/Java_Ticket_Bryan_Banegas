@@ -4,6 +4,8 @@
  */
 package Java_Ticket_Proyecto;
 
+import static Java_Ticket_Proyecto.Crear_Usuario.cantidadeusuarios;
+import static Java_Ticket_Proyecto.Crear_Usuario.users;
 import static Java_Ticket_Proyecto.Crear_Usuario.llamar;
 import javax.swing.JOptionPane;
 
@@ -21,7 +23,6 @@ public class Borrar_Usuario extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
-    public static int cantidadeusuarios=1;
     public static int edadCrear=0;
     public static boolean puedeAvanzar=false;
     /**
@@ -35,16 +36,17 @@ public class Borrar_Usuario extends javax.swing.JFrame {
 
         PasswordTextbox = new javax.swing.JTextField();
         UsuarioTextbox = new javax.swing.JTextField();
+        backgroundLabel = new javax.swing.JLabel();
         cancelar = new javax.swing.JButton();
-        NombreTextbox = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        EdadTextbox = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         Crear_usuario = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(PasswordTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 345, -1));
+        getContentPane().add(UsuarioTextbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 345, -1));
+
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/borrar_usuario_background.png"))); // NOI18N
+        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 367));
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -52,81 +54,15 @@ public class Borrar_Usuario extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 150, 50));
 
-        jLabel3.setText("Nombre Completo:");
-
-        jLabel4.setText("Edad");
-
-        Crear_usuario.setText("Crear Usuario");
+        Crear_usuario.setText("Borrar Usuario");
         Crear_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Crear_usuarioActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Usuraio:");
-
-        jLabel2.setText("Contraseña:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Crear_usuario)
-                        .addGap(186, 186, 186)
-                        .addComponent(cancelar)
-                        .addGap(0, 164, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(11, 11, 11))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(27, 27, 27)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(EdadTextbox)
-                                .addGap(287, 287, 287))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(PasswordTextbox, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NombreTextbox, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(UsuarioTextbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                                .addGap(0, 69, Short.MAX_VALUE))))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UsuarioTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NombreTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(PasswordTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EdadTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Crear_usuario)
-                    .addComponent(cancelar))
-                .addGap(58, 58, 58))
-        );
+        getContentPane().add(Crear_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 200, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,42 +77,39 @@ public class Borrar_Usuario extends javax.swing.JFrame {
     private void Crear_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Crear_usuarioActionPerformed
         // TODO add your handling code here:
         String usuarioCrear=UsuarioTextbox.getText();
-        String nombreCrear=NombreTextbox.getText();
         String contraseñaCrear=PasswordTextbox.getText();
-        String edad=EdadTextbox.getText();
-        try{
-            edadCrear=Integer.parseInt(edad);
-            puedeAvanzar=true;
-        }catch(NumberFormatException e){
-            puedeAvanzar=false;
-        }
-        if(puedeAvanzar==true){
-            for(int indice=0;indice<llamar.users.length;indice++){
-                if(llamar.users[indice].getUser().equals(usuarioCrear)){
-                    if(llamar.users[indice].getName().equals(nombreCrear)){
-                        if(llamar.users[indice].getPassword().equals(contraseñaCrear)){
-                            if(llamar.users[indice].getEdad()==edadCrear){
-                                llamar.users[indice].setName(null);
-                                llamar.users[indice].setUser(null);
-                                llamar.users[indice].setPassword(null);
-                                llamar.users[indice].setEdad(0);
-                                llamar.users[indice].setTipo(0);
-                                cantidadeusuarios++;
+        boolean noExiste=false;
+        if(usuarioCrear.isEmpty()||contraseñaCrear.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos.");
+        }else{
+            for(int indice=0;indice<users.size();indice++){
+                if(users.get(indice)!=null){
+                    if(users.get(indice).getUser().equals(usuarioCrear)){
+                        if(users.get(indice).getPassword().equals(contraseñaCrear)){
+                            if(users.get(indice).getTipo()==0){
+                                noExiste=true;
                             }else{
-                                JOptionPane.showMessageDialog(null, "Cuenta Incorrecto.");
+                                Usuarios borrarUsuario = new Usuarios("","","",0,0);
+                                users.set(indice,borrarUsuario);
+                                JOptionPane.showMessageDialog(null, "Ha borrado exitosamente su cuenta.");
+                                cantidadeusuarios--;
+                                noExiste=false;
+                                Administracion_de_usuarios pasar=new Administracion_de_usuarios();
+                                pasar.setVisible(true);
+                                this.setVisible(false);
+                                break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null, "Cuenta Incorrecta.");
+                            noExiste=true;
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null, "Cuenta Incorrecta.");
+                        noExiste=true;
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Cuenta no existe.");
                 }
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Ingrese su edad en numeros enteros");
+            if(noExiste==true){
+                JOptionPane.showMessageDialog(null, "Usuario no existe.");
+            }
         }
     }//GEN-LAST:event_Crear_usuarioActionPerformed
 
@@ -217,14 +150,9 @@ public class Borrar_Usuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Crear_usuario;
-    private javax.swing.JTextField EdadTextbox;
-    private javax.swing.JTextField NombreTextbox;
     private javax.swing.JTextField PasswordTextbox;
     private javax.swing.JTextField UsuarioTextbox;
+    private javax.swing.JLabel backgroundLabel;
     private javax.swing.JButton cancelar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

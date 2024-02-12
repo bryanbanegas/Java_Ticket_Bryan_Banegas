@@ -4,28 +4,37 @@
  */
 package Java_Ticket_Proyecto;
 
+import java.util.Date;
+
 /**
  *
  * @author adalb
  */
-public class Eventos {
-    
-    private int codigo;
+public class Evento {
+    private String codigo;
     private String titulo;
     private String descripcion;
-    private String fecha;
+    private Date fecha;
+    private int cantidad;
+    private String clase;
     private double monto;
     
-    public Eventos(int codigo,String titulo,String descripcion,String fecha,double monto) {
+    public Evento(String codigo, String clase, String titulo, String descripcion, Date fecha, double monto, int cantidad) {
         this.codigo=codigo;
+        this.clase=clase;
         this.titulo=titulo;
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.monto=monto;
+        this.cantidad=cantidad;
     }
     
-    public int getCodigo(){
+    public String getCodigo(){
         return codigo;
+    }
+    
+    public String getClase(){
+        return clase;
     }
     
     public String getTitulo(){
@@ -36,7 +45,7 @@ public class Eventos {
         return descripcion;
     }
     
-    public String getFecha(){
+    public Date getFecha(){
         return fecha;
     }
     
@@ -44,23 +53,21 @@ public class Eventos {
         return monto;
     }
     
-    public int setCodigo(int codigo){
-        return this.codigo=codigo;
+    public int getCantidad(){
+        return cantidad;
     }
     
-    public String setTitulo(String titulo){
-        return this.titulo=titulo;
-    }
     
-    public String setDescripcion(String descripcion){
-        return this.descripcion=descripcion;
-    }
     
-    public String setFecha(String fecha){
-        return this.fecha=fecha;
+    /*
+    if(indice<2){
+        if(indice<2){
+            modelo.addElement("jgvhbjhgfbkjhg");
+            jList1.setModel(modelo);
+            lista(indice+1);
+        }else{
+
+        }
     }
-    
-    public double setMonto(double monto){
-        return this.monto=monto;
-    }
+    */
 }

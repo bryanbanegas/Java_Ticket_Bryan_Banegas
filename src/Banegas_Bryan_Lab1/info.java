@@ -47,7 +47,7 @@ public class info {
     3
     2- Bidimensional-> Fila+, Columna +
     0 1 2 3
-    1
+    1 
     2
     3
     Ambas tiene un Indice
@@ -81,7 +81,7 @@ public class info {
     En java la herencia es Simple, es decir que SOLAMENTE se puede heredar de UN PADRE.
     Aunque hay que hacer enfasis que en JAVA, las clases por DEFAULT, heredan de la clase Object.
     
-    HERECIA TIPOS: Simple, Multinivel, Jerarquia, Multiple
+    HERENCIA TIPOS: Simple, Multinivel, Jerarquia, Multiple
     
     La clase padre tiene que existir y no ser final
     
@@ -115,5 +115,23 @@ public class info {
     abstract es una estructura mas clara para poder trabajar
     
     CUANDO LLEVES ESTRUCTURA DE DATORS APROVECHA A MEJORAR
+    
+    Las interfaces no son como una clase comun en vez de colocar class tenes que colocar interface 
+    y por default todas las funciones son: Publicas y Abstractas.
+    Las clases interfaces pueden tener atributos pero por default estos atributos son: Publicos, Estaticos y Finales.
+    Utilizae la palabra reservada implements y se deben implementar TODAS las funciones abstractas que posee.
+    La herencia es la primera que se llama y despues la implementacion
+    
+    polimorfismo tiene tres decisiones con la hija estas son: sobreescritura, incremento y dejarla tal y como esta.
+    lo que hicimos en EmpleadoComun es sobreescritura 
+    
+    el enum se vuelve un nuevo tipo de dato.
+    -Por lo que puede crear objetos de ese tipo
+    Por default cada elemento es public static y final.
+    -Por lo que cada elemento es considerado una constante.
+    
+    La funcion estatica .values() retorn el arreglo de una fucnion enum
+    
+    En los enums de le debe llamar el constructor en cada uno!, recuerden que cada elemento es final.
     */
 }

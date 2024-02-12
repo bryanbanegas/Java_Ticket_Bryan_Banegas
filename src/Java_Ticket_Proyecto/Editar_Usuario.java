@@ -4,7 +4,9 @@
  */
 package Java_Ticket_Proyecto;
 
-import static Java_Ticket_Proyecto.Crear_Usuario.llamar;
+import static Java_Ticket_Proyecto.Crear_Usuario.users;
+import static Java_Ticket_Proyecto.confirmar_usuario.pos;
+import static Java_Ticket_Proyecto.confirmar_usuario.usuarioLogin;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +25,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
     }
     public static int cantidadeusuarios=1;
     public static int edadCrear=0;
-    public static boolean puedeAvanzar=false;
+    public static boolean puedeAvanzar=false,puedeAvanzar1=false;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +48,8 @@ public class Editar_Usuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        UsuarioTextbox.setText(users.get(pos).getUser());
+
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,11 +57,16 @@ public class Editar_Usuario extends javax.swing.JFrame {
             }
         });
 
+        NombreTextbox.setText(users.get(pos).getName());
+
         jLabel3.setText("Nombre Completo:");
 
-        jLabel4.setText("Edad");
+        String e=String.valueOf(users.get(pos).getEdad());
+        EdadTextbox.setText(e);
 
-        Crear_usuario.setText("Crear Usuario");
+        jLabel4.setText("Edad:");
+
+        Crear_usuario.setText("Editar Usuario");
         Crear_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Crear_usuarioActionPerformed(evt);
@@ -67,6 +76,8 @@ public class Editar_Usuario extends javax.swing.JFrame {
         jLabel1.setText("Usuraio:");
 
         jLabel2.setText("Contraseña:");
+
+        PasswordTextbox.setText(users.get(pos).getPassword());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +90,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
                         .addComponent(Crear_usuario)
                         .addGap(186, 186, 186)
                         .addComponent(cancelar)
-                        .addGap(0, 164, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -100,7 +111,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
                                     .addComponent(PasswordTextbox, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(NombreTextbox, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(UsuarioTextbox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                                .addGap(0, 69, Short.MAX_VALUE))))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +132,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EdadTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Crear_usuario)
                     .addComponent(cancelar))
@@ -144,58 +155,66 @@ public class Editar_Usuario extends javax.swing.JFrame {
         String nombreCrear=NombreTextbox.getText();
         String contraseñaCrear=PasswordTextbox.getText();
         String edad=EdadTextbox.getText();
-        try{
+        if(usuarioCrear.isEmpty()||nombreCrear.isEmpty()||contraseñaCrear.isEmpty()||edad.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor, llenar todos los campos.");
+        }else{
+            try{
             edadCrear=Integer.parseInt(edad);
             puedeAvanzar=true;
         }catch(NumberFormatException e){
             puedeAvanzar=false;
         }
         if(puedeAvanzar==true){
-            for(int indice=0;indice<llamar.users.length;indice++){
-                if(llamar.users[indice].getUser().equals(usuarioCrear)){
-                    if(llamar.users[indice].getName().equals(nombreCrear)){
-                        if(llamar.users[indice].getPassword().equals(contraseñaCrear)){
-                            if(llamar.users[indice].getEdad()==edadCrear){
-                                Object[] opciones={"Administrativo", "Contenido"};
-                            int error=0;
-                            while(error==0){
-                            int seleccion=JOptionPane.showOptionDialog(null,
-                                    "Elige el tipo de usuario:",
-                                    "Elegir Opción",
-                                    JOptionPane.DEFAULT_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    null,
-                                    opciones,                    
-                                    opciones[1]); 
-                            if(opciones[seleccion].equals("Administrativo")){
-                                error=1;
-                            }else if(opciones[seleccion].equals("Contenido")){
-                                error=2;
-                            }
-                            }
-                            JOptionPane.showMessageDialog(null, "Ha editado exitosamente su cuenta.");
-                            llamar.users[indice].setName(nombreCrear);
-                            llamar.users[indice].setUser(usuarioCrear);
-                            llamar.users[indice].setPassword(contraseñaCrear);
-                            llamar.users[indice].setEdad(edadCrear);
-                            llamar.users[indice].setTipo(error);
-                            cantidadeusuarios++;
-                            }else{
-                                JOptionPane.showMessageDialog(null, "Cuenta Incorrecta.");
-                            }
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Cuenta Incorrecta.");
-                        }
+            for(int indice=0;indice<users.size();indice++){
+                if(users.get(indice)!=null){
+                    if(usuarioCrear.equals(usuarioLogin)){
+                        puedeAvanzar1=true;
+                        break;
+                    }else if(users.get(indice).getUser().equals(usuarioCrear)){
+                        puedeAvanzar1=false;
+                        JOptionPane.showMessageDialog(null, "Usuario ya existe.");
+                        break;
                     }else{
-                        JOptionPane.showMessageDialog(null, "Cuenta Incorrecta.");
+                        puedeAvanzar1=true;
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Usuario no existe.");
                 }
             }
+            if(puedeAvanzar1==true){
+                int error=0;
+                while(error==0){
+                try{
+                    Object[] opciones={"Administrativo", "Contenido", "Limitado"};
+                    int seleccion=JOptionPane.showOptionDialog(null,
+                            "Elige el tipo de usuario:",
+                            "Elegir Opción",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null,
+                            opciones,                    
+                            opciones[1]); 
+                    if(opciones[seleccion].equals("Administrativo")){
+                        error=1;
+                    }else if(opciones[seleccion].equals("Contenido")){
+                        error=2;
+                    }else if(opciones[seleccion].equals("Limitado")){
+                        error=3;
+                    }
+                }catch(ArrayIndexOutOfBoundsException e){
+                    error=0;
+                }
+                }
+                Usuarios editarUsuario=new Usuarios(nombreCrear,usuarioCrear,contraseñaCrear,edadCrear,error);
+                users.set(pos,editarUsuario);
+                JOptionPane.showMessageDialog(null, "Ha editado exitosamente su cuenta.");
+                Administracion_de_usuarios pasar=new Administracion_de_usuarios();
+                pasar.setVisible(true);
+                this.setVisible(false);
+                }
         }else{
             JOptionPane.showMessageDialog(null,"Ingrese su edad en numeros enteros");
         }
+        }
+        
     }//GEN-LAST:event_Crear_usuarioActionPerformed
 
     /**
@@ -235,10 +254,10 @@ public class Editar_Usuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Crear_usuario;
-    private javax.swing.JTextField EdadTextbox;
-    private javax.swing.JTextField NombreTextbox;
-    private javax.swing.JTextField PasswordTextbox;
-    private javax.swing.JTextField UsuarioTextbox;
+    public static javax.swing.JTextField EdadTextbox;
+    public static javax.swing.JTextField NombreTextbox;
+    public static javax.swing.JTextField PasswordTextbox;
+    public static javax.swing.JTextField UsuarioTextbox;
     private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
